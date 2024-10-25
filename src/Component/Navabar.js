@@ -1,7 +1,10 @@
-import React from 'react'   
 import { NavLink } from 'react-router-dom'
 
-export default function Navabar() {
+import React, { useState } from 'react';
+
+const Navabar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <header className="bg-white">
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -24,23 +27,18 @@ export default function Navabar() {
                                 <li>
                                     <a className="text-gray-500 transition hover:text-gray-500/75" href="/"> Home </a>
                                 </li>
-
                                 <li>
                                     <a className="text-gray-500 transition hover:text-gray-500/75" href="/about"> About </a>
                                 </li>
-
                                 <li>
                                     <a className="text-gray-500 transition hover:text-gray-500/75" href="/wedding">Wedding </a>
                                 </li>
-
                                 <li>
                                     <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Services </a>
                                 </li>
-
                                 <li>
                                     <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Projects </a>
                                 </li>
-
                                 <li>
                                     <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
                                 </li>
@@ -50,15 +48,8 @@ export default function Navabar() {
 
                     <div className="flex items-center gap-4">
                         <div className="block md:hidden">
-                            <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="size-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                >
+                            <button onClick={() => setIsOpen(!isOpen)} className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
                             </button>
@@ -66,7 +57,35 @@ export default function Navabar() {
                     </div>
                 </div>
             </div>
-        </header>
 
-    )
-}
+            {isOpen && (
+                <div className="md:hidden bg-white shadow">
+                    <nav aria-label="Global" className="flex flex-col p-4">
+                        <ul className="space-y-2">
+                            <li>
+                                <a className="block text-gray-500 transition hover:text-gray-500/75" href="/"> Home </a>
+                            </li>
+                            <li>
+                                <a className="block text-gray-500 transition hover:text-gray-500/75" href="/about"> About </a>
+                            </li>
+                            <li>
+                                <a className="block text-gray-500 transition hover:text-gray-500/75" href="/wedding">Wedding </a>
+                            </li>
+                            <li>
+                                <a className="block text-gray-500 transition hover:text-gray-500/75" href="#"> Services </a>
+                            </li>
+                            <li>
+                                <a className="block text-gray-500 transition hover:text-gray-500/75" href="#"> Projects </a>
+                            </li>
+                            <li>
+                                <a className="block text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            )}
+        </header>
+    );
+};
+
+export default Navabar;
